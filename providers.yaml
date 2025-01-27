@@ -56,3 +56,11 @@ providers:
       - type: 'consensus-pruned'
         chain_id: 'mocha-4'
         url: 'https://config-t.noders.services/celestia/data.tar.lz4'
+  - name: 'stake-town.com'
+    snapshots:
+      - type: 'consensus-pruned'
+        chain_id: 'celestia'
+        url: 'https://snapshots.stake-town.com/celestia/celestia_latest.tar.lz4'
+      - type: 'consensus-pruned'
+        chain_id: 'mocha-4'
+        url: 'https://snapshots-testnet.stake-town.com/celestia/mocha-4_latest.tar.lz4'
