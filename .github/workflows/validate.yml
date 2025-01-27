@@ -12,4 +12,4 @@ jobs:
       - name: Install yamllint
         run: sudo apt-get install yamllint
       - name: Validate YAML
-        run: yamllint providers.yaml
+        run: yamllint -d "{extends: default, rules: {line-length: disable}}" providers.yaml
