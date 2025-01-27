@@ -1,0 +1,15 @@
+name: YAML Validation
+on:
+  push:
+    paths: ['**.yaml', '**.yml']
+  pull_request:
+    paths: ['**.yaml', '**.yml']
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install yamllint
+        run: sudo apt-get install yamllint
+      - name: Validate YAML
+        run: yamllint providers.yaml
