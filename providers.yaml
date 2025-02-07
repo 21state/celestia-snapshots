@@ -64,7 +64,7 @@ providers:
       - type: 'consensus-pruned'
         chain_id: 'mocha-4'
         url: 'https://snapshots-testnet.stake-town.com/celestia/mocha-4_latest.tar.lz4'
-  - name: 'citizenweb3.com'
+  - name: 'citizenweb3'
     snapshots:
       - type: 'consensus-pruned'
         chain_id: 'celestia'
