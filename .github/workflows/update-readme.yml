@@ -1,0 +1,74 @@
+name: Update README
+on:
+  push:
+    paths:
+      - 'config.yaml'
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install deps
+        run: |
+          pip install pyyaml
+
+      - name: Ensure README has markers
+        run: |
+          if [ ! -f README.md ]; then
+            echo -e "# Celestia Snapshots\n\n<!-- BEGIN_SNAPSHOTS -->\n<!-- END_SNAPSHOTS -->" > README.md
+          elif ! grep -q "<!-- BEGIN_SNAPSHOTS -->" README.md; then
+            echo -e "\n<!-- BEGIN_SNAPSHOTS -->\n<!-- END_SNAPSHOTS -->" >> README.md
+          fi
+          
+      - name: Generate content
+        run: |
+          python - << 'EOF'
+          import yaml
+          
+          def generate_snapshot_table():
+              with open('config.yaml', 'r') as f:
+                  config = yaml.safe_load(f)
+              
+              markdown = ["## Snapshots\n\n"]
+              markdown.append("| Provider | Chain ID | Type | URL |\n")
+              markdown.append("|----------|-----------|------|-----|\n")
+              
+              for provider in config['providers']:
+                  for snapshot in provider['snapshots']:
+                      markdown.append(f"| {provider['name']} | {snapshot['chain_id']} | {snapshot['type']} | {snapshot['url']} |\n")
+              
+              with open('SNAPSHOTS.md', 'w') as f:
+                  f.write(''.join(markdown))
+          
+          generate_snapshot_table()
+          EOF
+          
+      - name: Update README
+        run: |
+          awk '
+            BEGIN { p=1 }
+            /<!-- BEGIN_SNAPSHOTS -->/ { p=0; print; system("cat SNAPSHOTS.md") }
+            /<!-- END_SNAPSHOTS -->/ { p=1 }
+            p { print }
+          ' README.md > README.new
+          mv README.new README.md
+      
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "docs: update snapshots section"
+          git push
