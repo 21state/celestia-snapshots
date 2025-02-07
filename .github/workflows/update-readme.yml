@@ -2,7 +2,7 @@ name: Update README
 on:
   push:
     paths:
-      - 'config.yaml'
+      - 'providers.yaml'
     branches:
       - main
   workflow_dispatch:
