@@ -38,7 +38,7 @@ jobs:
           import yaml
           
           def generate_snapshot_table():
-              with open('config.yaml', 'r') as f:
+              with open('providers.yaml', 'r') as f:
                   config = yaml.safe_load(f)
               
               markdown = ["## Snapshots\n\n"]
