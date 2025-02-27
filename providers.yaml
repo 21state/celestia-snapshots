@@ -1,15 +1,4 @@
 providers:
-  - name: 'kingsuper.services'
-    snapshots:
-      - type: 'consensus-archive'
-        chain_id: 'celestia'
-        url: 'https://minioapi.kingsuper.services/celestia/celestia-app.tar.lz4'
-      - type: 'bridge-archive'
-        chain_id: 'celestia'
-        url: 'https://minioapi.kingsuper.services/celestia/celestia-bridge.tar.lz4'
-      - type: 'bridge-archive'
-        chain_id: 'mocha-4'
-        url: 'https://minioapi.kingsuper.services/celestia/mocha-4-bridge.tar.lz4'
   - name: 'blackblocks.io'
     snapshots:
       - type: 'consensus-archive'
