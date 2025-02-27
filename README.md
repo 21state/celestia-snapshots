@@ -7,9 +7,6 @@ This repository contains verified snapshots for Celestia nodes, provided by trus
 
 | Provider | Chain ID | Type | URL |
 |----------|-----------|------|-----|
-| kingsuper.services | celestia | consensus-archive | https://minioapi.kingsuper.services/celestia/celestia-app.tar.lz4 |
-| kingsuper.services | celestia | bridge-archive | https://minioapi.kingsuper.services/celestia/celestia-bridge.tar.lz4 |
-| kingsuper.services | mocha-4 | bridge-archive | https://minioapi.kingsuper.services/celestia/mocha-4-bridge.tar.lz4 |
 | blackblocks.io | celestia | consensus-archive | http://snapshots.blackblocks.io/mainnet/celestia/fullnode/archive/celestia_fullnode_archive_celestia_latest.tar.lz4 |
 | blackblocks.io | celestia | bridge-archive | http://snapshots.blackblocks.io/mainnet/celestia/bridge/archive/celestia_bridge_archive_celestia_latest.tar.lz4 |
 | blackblocks.io | mocha-4 | bridge-archive | http://snapshots.blackblocks.io/testnet/celestia/bridge/archive/celestia_bridge_archive_mocha-4_latest.tar.lz4 |
